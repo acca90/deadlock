@@ -1,4 +1,4 @@
-const Deadlock = (function($) {
+const Deadlock = (function() {
     /**
      * Mapa de elementos
      */
@@ -47,7 +47,7 @@ const Deadlock = (function($) {
      * Cria elementos
      */
     const createCar = function ( lane ) {
-        let $car = $("<div lane="+lane+" class='car'><img class='car"+lane+"' src='assets/img/car2.png'></div>");
+        let $car = $("<div lane="+lane+" class='car'></div>");
         elementMap.lanes[(lane-1)].append($car);
         return $car;
     };
@@ -72,7 +72,6 @@ const Deadlock = (function($) {
             direction: 'alternate',
             complete: function () {
                 $car.remove();
-                newCarTravelOnLane($car.attr('lane'));
             }
         });
     };
@@ -100,4 +99,5 @@ const Deadlock = (function($) {
         init: init,
         run: run
     };
-})(jQuery);
+})();
+

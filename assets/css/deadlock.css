@@ -42,17 +42,24 @@
     position: absolute;
 }
 
-.car > img {
+.car {
     width: 50px;
     height: 50px;
+    background-image: url("../img/car2.png");
+    background-size: 50px 50px;
+    border-radius: 50px;
     position: absolute;
 }
-img.car2 {
-    transform: rotate(180deg)
+
+#lane2 > .car {
+    transform: rotate(180deg);
 }
-img.car3 {
-    transform: rotate(270deg)
+
+#lane3 > .car {
+    transform: rotate(270deg);
 }
-img.car4 {
+
+#lane4 > .car {
     transform: rotate(90deg);
 }
+
