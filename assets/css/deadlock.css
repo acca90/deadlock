@@ -1,7 +1,58 @@
-body {
-    padding-top: 50px;
+#controllers {
+    border: solid 1px #e5e5e5;
+    background-color: #e5e5e5;
+    margin-left: auto;
+    margin-right: auto;
+    width: 611px;
 }
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
+#where-things-happens {
+    background-image: url("../img/base.png");
+    border: solid 1px #e5e5e5;
+    margin-left: auto;
+    margin-right: auto;
+    height: 512px;
+    width: 611px;
+}
+#where-things-happens > #lane1 {
+    margin-top: 123px;
+    width: 610px;
+    height: 45px;
+    //background-color: red;
+    position: absolute;
+}
+#where-things-happens > #lane2 {
+    margin-top: 343px;
+    width: 610px;
+    height: 45px;
+    //background-color: blue;
+    position: absolute;
+}
+#where-things-happens > #lane3 {
+    margin-left: 148px;
+    width: 45px;
+    height: 511px;
+    //background-color: green;
+    position: absolute;
+}
+#where-things-happens > #lane4 {
+    margin-left: 418px;
+    width: 45px;
+    height: 511px;
+    //background-color: yellow;
+    position: absolute;
+}
+
+.car > img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+img.car2 {
+    transform: rotate(180deg)
+}
+img.car3 {
+    transform: rotate(270deg)
+}
+img.car4 {
+    transform: rotate(90deg);
 }
