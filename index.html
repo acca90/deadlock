@@ -11,10 +11,10 @@
 
     <div id="controllers">
 
-        <input type="button" value="Go" onclick="Deadlock.run()">
+        <input id="btn1" type="button" value="Iniciar" onclick="Deadlock.run()">
+        <input id="btn2" type="button" value="Parar" onclick="Deadlock.stop()">
 
     </div>
-
     <div id="where-things-happens">
         <div id="lane1">
         </div>
@@ -34,7 +34,7 @@
 <script src="assets/plugins/jquery.keyframes/dist/jquery.keyframes.js"></script>
 <script src="assets/js/Deadlock.js"></script>
 <script>
-    $(document).ready(() => Deadlock.init());
+    $(document).ready(() => Deadlock.run());
 </script>
 </body>
 </html>

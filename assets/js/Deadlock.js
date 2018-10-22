@@ -1,8 +1,8 @@
-const Deadlock = (function() {
+const Deadlock = (function($) {
     /**
-     * Mapa de elementos
+     * Intervalor da janela
      */
-    let elementMap = {};
+    let intervalo;
     /**
      * Animações
      */
@@ -28,27 +28,13 @@ const Deadlock = (function() {
      * Inicializa simulação de deadlock
      */
     const init = function () {
-        initElementMap();
-        initEvents();
-    };
-    /**
-     * Inicializa mapa de elementos
-     */
-    const initElementMap = function () {
-        elementMap.container = $('#where-things-happens');
-        elementMap.lanes = [$('#lane1'), $('#lane2'), $('#lane3'), $('#lane4')];
-    };
-    /**
-     * Inicializa eventos
-     */
-    const initEvents = function () {
     };
     /**
      * Cria elementos
      */
     const createCar = function ( lane ) {
-        let $car = $("<div lane="+lane+" class='car'></div>");
-        elementMap.lanes[(lane-1)].append($car);
+        let $car = $("<div class='car'></div>");
+        $('#lane' + lane).append($car);
         return $car;
     };
     /**
@@ -67,21 +53,13 @@ const Deadlock = (function() {
     const playKeyframe = function ( $car, lane ) {
         $car.playKeyframe({
             name: 'lane' + lane,
-            duration: "3s",
+            duration: Math.floor((Math.random() * 5) + 1) + "s",
             timingFunction: 'linear',
             direction: 'alternate',
             complete: function () {
                 $car.remove();
             }
         });
-    };
-    /**
-     * Rodar simulação
-     */
-    const run = function () {
-        for (let lane of [1,2,3,4]) {
-            newCarTravelOnLane(lane);
-        }
     };
     /**
      * Inicia viagem de carro na lane informada
@@ -93,11 +71,57 @@ const Deadlock = (function() {
         playKeyframe($car,lane);
     };
     /**
+     * Inicia intervalo
+     */
+    const setIntervalo = function () {
+        intervalo = window.setInterval(function() {
+            let lane = Math.floor((Math.random() * 4) + 1);
+            newCarTravelOnLane(lane);
+        }, 1000);
+    };
+    /**
+     * Rodar simulação
+     */
+    const run = function () {
+        let $button = $('#btn1');
+        if ($button.val() == 'Iniciar') {
+            setIntervalo();
+            $button.val('Reiniciar')
+        } else {
+            clean();
+            setIntervalo();
+        }
+    };
+    /**
+     * Para animação
+     */
+    const stop = function () {
+        let $button = $('#btn2');
+        if ($button.val() == 'Parar') {
+            window.clearInterval(intervalo);
+            $('.car').pauseKeyframe();
+            $button.val('Continuar')
+        } else {
+            setIntervalo();
+            $('.car').resumeKeyframe();
+            $button.val('Parar')
+        }
+    };
+    /**
+     * Limpa simulação
+     */
+    const clean = function () {
+        window.clearInterval(intervalo);
+        $('.car').remove();
+        $('#btn2').val('Parar')
+    };
+    /**
      * Métodos públicos
      */
     return {
         init: init,
-        run: run
+        run: run,
+        stop: stop
     };
-})();
+})(jQuery);
 
