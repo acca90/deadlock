@@ -7,24 +7,52 @@
 </head>
 <body>
 
-<div class="container">
+<h1>Deadlock</h1>
+<div id="container">
 
-    <div id="controllers">
 
-        <input id="btn1" type="button" value="Iniciar" onclick="Deadlock.run()">
-        <input id="btn2" type="button" value="Parar" onclick="Deadlock.stop()">
+    <table>
+        <tr>
+            <td colspan="2" id="controllers">
+                <input id="btn1" type="button" value="Reset" onclick="Deadlock.rerun()">
+                <input id="btn2" type="button" value="Deadlock It" onclick="Deadlock.lock()">
+            </td>
+        </tr>
+        <tr>
+            <td id="where-things-happens">
+                <div id="lane1">
+                </div>
+                <div id="lane2">
+                </div>
+                <div id="lane3">
+                </div>
+                <div id="lane4">
+                </div>
+            </td>
+            <td id="text-place">
 
-    </div>
-    <div id="where-things-happens">
-        <div id="lane1">
-        </div>
-        <div id="lane2">
-        </div>
-        <div id="lane3">
-        </div>
-        <div id="lane4">
-        </div>
-    </div>
+                <h5>Deadlock Problem</h5>
+                <p>In computer science according to Tenanbaum, there is a problem known as DeadLock.
+                    “A conjunct of process will be in a Deadlock situation if all process that is from a conjunct are waiting for an event that only another process that is from the same conjunct could do,
+                    but as it is locked waiting the event, that event will never occur because the process will only generate the event when the other process finish.”
+                For that to happen there is some conditions.</p>
+
+                <ul>
+                    <li>Mutual Exclusion: every resource is either associated with a single process or available;</li>
+                    <li>Possession and Waiting: processes that hold resources can request new resources;</li>
+                    <li>No Preemption: resources previously granted cannot be taken;</li>
+                    <li>Circular wait: there must be a circular chain of two or more processes, in which each is waiting for resources retained by the next member of that chain.</li>
+                </ul>
+                <p>A Deadlock that can happen physically is on the traffic, this occurs when the vehicles block the passage of others waiting for their moment to continue,
+                    but so do they, locking the traffic in every way. In the animation the deadlock will happen, demonstrating in a more direct way what is a Deadlock</p>
+                <p>Understanding this context, the animation is going to show both cases, when it starts in the first moment the traffic is going to work properly,
+                    exemplifying a good program that has no problems.  When the button is pushed a second animation will occur, showing the example of a Deadlock on the traffic.</p>
+
+            </td>
+        </tr>
+    </table>
+
+
 
 
 </div>

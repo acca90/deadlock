@@ -1,15 +1,34 @@
-#controllers {
-    border: solid 1px #e5e5e5;
-    background-color: #e5e5e5;
+table {
     margin-left: auto;
     margin-right: auto;
-    width: 611px;
+}
+table {
+    border: none;
+}
+table > tr {
+    border: none;
+}
+table > td {
+    border: none;
+}
+#controllers {
+    text-align: center;
+}
+#text-place {
+    font-family: tahoma, sans-serif;
+    text-align: justify;
+    display: inline-block;
+    background-color: #e5e5e5;
+    border: solid 1px #e5e5e5;
+    height: 512px;
+    width: 541px;
+    padding: 0px 20px 20px;
+    overflow-y: auto;
 }
 #where-things-happens {
+    display: inline-block;
     background-image: url("../img/base.png");
     border: solid 1px #e5e5e5;
-    margin-left: auto;
-    margin-right: auto;
     height: 512px;
     width: 611px;
 }
@@ -63,3 +82,8 @@
     transform: rotate(90deg);
 }
 
+h1 {
+    text-align: center;
+    font-size: 48px;
+    font-family: tahoma, sans-serif;
+}
