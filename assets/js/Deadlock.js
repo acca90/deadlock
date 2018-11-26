@@ -3,127 +3,58 @@ const Deadlock = (function($) {
      * Intervalor da janela
      */
     let intervalo;
-    /**
-     * Animações
-     */
-    const animation = [
-        {
-            begin: { 'margin-left': '5px' },
-            end: { 'margin-left': '550px' }
-        },
-        {
-            begin: { 'margin-left': '550px' },
-            end: { 'margin-left': '0px' }
-        },
-        {
-            begin: { 'margin-top': '465px' },
-            end: { 'margin-top': '5px' },
-        },
-        {
-            begin: { 'margin-top': '5px' },
-            end: { 'margin-top': '465px' },
-        }
-    ];
-    /**
-     * Inicializa simulação de deadlock
-     */
-    const init = function () {
-    };
+    let next = true;
     /**
      * Cria elementos
      */
-    const createCar = function ( lane ) {
+    const createCar = function () {
         let $car = $("<div class='car'></div>");
-        $('#lane' + lane).append($car);
+        if (!next) {
+            $car.addClass('direita');
+        }
+        $('#lane').append($car);
         return $car;
     };
     /**
      * Define keyframe para lane informada
      */
-    const defineKeyframe = function ( lane ) {
-        $.keyframe.define({
-            name: 'lane'+lane,
-            '0%': animation[lane-1].begin,
-            '100%': animation[lane-1].end
-        });
+    const defineKeyframe = function () {
+        $.keyframe.define([
+            {
+                name: 'esquerda',
+                '0%': { 'margin-left': '-130px' },
+                '100%':  { 'margin-left': '630px' }
+            },
+            {
+                name: 'direita',
+                '0%':  { 'margin-left': '630px' },
+                '100%': { 'margin-left': '-130px' }
+            }
+        ]);
     };
     /**
      * Roda animação para o carro e a lane informada
      */
-    const playKeyframe = function ( $car, lane ) {
+    const playKeyframe = function ( $car ) {
         $car.playKeyframe({
-            name: 'lane' + lane,
-            duration: findVelocidade(lane) + "s",
+            name: next ? 'esquerda' : 'direita',
+            duration: '3s',
             timingFunction: 'linear',
             complete: function () {
-                $car.remove();
+                setTimeout(() => {
+                    $car.remove();
+                    goNext(!next);
+                }, 1000)
             }
         });
     };
     /**
-     * Identificia a velocidade indicada para cada lane
+     * Inicia a próxima viagem
      */
-    const findVelocidade = function ( lane ) {
-        let lane1 = 2;
-        let lane2 = 3;
-        let lane3 = 2;
-        let lane4 = 3;
-        switch (lane) {
-            case 1: {
-                if (lane1 == 1.5) {
-                    lane1 = 3;
-                } else {
-                    lane1 = 1.5;
-                }
-                return lane1;
-            }
-            case 2: {
-                if (lane2 == 3) {
-                    lane2 = 1.5;
-                } else {
-                    lane2 = 3;
-                }
-                return lane2;
-            }
-            case 3: {
-                if (lane3 == 1.5) {
-                    lane3 = 3;
-                } else {
-                    lane3 = 1.5;
-                }
-                return lane3;
-            }
-            case 4: {
-                if (lane4 == 3) {
-                    lane4 = 1.5;
-                } else {
-                    lane4 = 3;
-                }
-                return lane4;
-            }
-            default: return 1;
-        }
-    };
-    /**
-     * Inicia viagem de carro na lane informada
-     * @param lane
-     */
-    const viagemSegura = function (lane ) {
-        let $car = createCar(lane);
-        defineKeyframe(lane);
-        playKeyframe($car,lane);
-    };
-    /**
-     * Inicia intervalo
-     */
-    const setIntervaloNormal = function () {
-        let lane = 1;
-        intervalo = window.setInterval(function() {
-            viagemSegura(lane++);
-            if (lane > 4) {
-                lane = 1;
-            }
-        }, 1000);
+    const goNext = function ( newNext ) {
+        next = newNext;
+        let $car = createCar();
+        playKeyframe($car);
     };
     /**
      * Para simulações
@@ -131,19 +62,22 @@ const Deadlock = (function($) {
     const stop = function () {
         $('.car').remove();
         window.clearInterval(intervalo);
+
     };
     /**
      * Rodar normal
      */
     const run = function () {
-        setIntervaloNormal();
+        defineKeyframe();
+        let $car = createCar();
+        playKeyframe($car);
     };
     /**
      * Rodar novamente simulação
      */
     const rerun = function () {
         stop();
-        setIntervaloNormal();
+        run();
     };
     /**
      * Executa animação de deadlock
@@ -161,7 +95,6 @@ const Deadlock = (function($) {
      * Realiza deadlock
      */
     const setIntervaloDeadlock = function () {
-
         let viagem = 1;
         defineViagemLock();
         intervalo = window.setInterval(function() {
@@ -424,13 +357,28 @@ const Deadlock = (function($) {
         });
     };
     /**
+     * Muda idioma para português
+     */
+    const portugues = function () {
+        $('#ingles').hide();
+        $('#portugues').show();
+    };
+    /**
+     * Muda idioma para inglês
+     */
+    const english = function () {
+        $('#portugues').hide();
+        $('#ingles').show();
+    };
+    /**
      * Métodos públicos
      */
     return {
-        init: init,
         run: run,
         rerun: rerun,
-        lock: lock
+        lock: lock,
+        portugues: portugues,
+        english: english
     };
 })(jQuery);
 

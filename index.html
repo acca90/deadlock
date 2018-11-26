@@ -19,41 +19,61 @@
             </td>
         </tr>
         <tr>
+            <td width="150px"><div class="absoluta"></div></td>
             <td id="where-things-happens">
-                <div id="lane1">
-                </div>
-                <div id="lane2">
-                </div>
-                <div id="lane3">
-                </div>
-                <div id="lane4">
+                <div id="lane">
                 </div>
             </td>
+            <td width="150px"><div class="absoluta"></div></td>
+        </tr>
+        <tr>
+            <td></td>
             <td id="text-place">
 
-                <h5>Deadlock Problem</h5>
-                <p>In computer science according to Tenanbaum, there is a problem known as DeadLock.
-                    “A conjunct of process will be in a Deadlock situation if all process that is from a conjunct are waiting for an event that only another process that is from the same conjunct could do,
-                    but as it is locked waiting the event, that event will never occur because the process will only generate the event when the other process finish.”
-                For that to happen there is some conditions.</p>
+                <div id="ingles">
+                    <h5>Deadlock Problem</h5> <input type="button" value="Português" onclick="Deadlock.portugues()" />
+                    <p>In computer science according to Tenanbaum, there is a problem known as DeadLock.
+                        “A conjunct of process will be in a Deadlock situation if all process that is from a conjunct are waiting for an event that only another process that is from the same conjunct could do,
+                        but as it is locked waiting the event, that event will never occur because the process will only generate the event when the other process finish.”
+                        For that to happen there is some conditions.</p>
 
-                <ul>
-                    <li>Mutual Exclusion: every resource is either associated with a single process or available;</li>
-                    <li>Possession and Waiting: processes that hold resources can request new resources;</li>
-                    <li>No Preemption: resources previously granted cannot be taken;</li>
-                    <li>Circular wait: there must be a circular chain of two or more processes, in which each is waiting for resources retained by the next member of that chain.</li>
-                </ul>
-                <p>A Deadlock that can happen physically is on the traffic, this occurs when the vehicles block the passage of others waiting for their moment to continue,
-                    but so do they, locking the traffic in every way. In the animation the deadlock will happen, demonstrating in a more direct way what is a Deadlock</p>
-                <p>Understanding this context, the animation is going to show both cases, when it starts in the first moment the traffic is going to work properly,
-                    exemplifying a good program that has no problems.  When the button is pushed a second animation will occur, showing the example of a Deadlock on the traffic.</p>
+                    <ul>
+                        <li>Mutual Exclusion: every resource is either associated with a single process or available;</li>
+                        <li>Possession and Waiting: processes that hold resources can request new resources;</li>
+                        <li>No Preemption: resources previously granted cannot be taken;</li>
+                        <li>Circular wait: there must be a circular chain of two or more processes, in which each is waiting for resources retained by the next member of that chain.</li>
+                    </ul>
+                    <p>A Deadlock that can happen physically is on the traffic, this occurs when the vehicles block the passage of others waiting for their moment to continue,
+                        but so do they, locking the traffic in every way. In the animation the deadlock will happen, demonstrating in a more direct way what is a Deadlock</p>
+                    <p>Understanding this context, the animation is going to show both cases, when it starts in the first moment the traffic is going to work properly,
+                        exemplifying a good program that has no problems.  When the button is pushed a second animation will occur, showing the example of a Deadlock on the traffic.</p>
+                </div>
 
+                <div id="portugues" style="display: none">
+
+                    <h5>Problema de deadlock</h5> <input type="button" value="English" onclick="Deadlock.english()" />
+                    <p>Na ciência da computação, de acordo com Tenanbaum, existe um problema conhecido como DeadLock.
+                        “Um conjunto de processos estará em uma situação de Deadlock se todo o processo de um conjunto estiver esperando por um evento que apenas outro processo do mesmo conjunto possa fazer,
+                        mas como está bloqueado aguardando o evento, esse evento nunca ocorrem porque o processo só gerará o evento quando o outro processo terminar. ”
+                        Para que isso aconteça, existem algumas condições.</p>
+
+                    <ul>
+                        <li>Exclusão Mútua: todo recurso está associado a um único processo ou está disponível;</li>
+                        <li>Posse e Espera: os processos que retêm recursos podem solicitar novos recursos;</li>
+                        <li>Sem Preempção: os recursos previamente concedidos não podem ser tomados;</li>
+                        <li>Espera circular: deve haver uma cadeia circular de dois ou mais processos, na qual cada um está esperando por recursos retidos pelo próximo membro dessa cadeia.</li>
+                    </ul>
+
+                    <p>Deadlock que pode acontecer fisicamente no tráfego, isso ocorre quando os veículos bloqueiam a passagem de outros que esperam seu momento para continuar,
+                        mas eles também bloqueiam o tráfego em todos os sentidos. Na animação o impasse acontecerá, demonstrando de forma mais direta o que é um Deadlock.</p>
+                    <p>Entendendo esse contexto, a animação vai mostrar os dois casos, quando começar no primeiro momento em que o tráfego vai funcionar corretamente,
+                        exemplificando um bom programa que não apresenta problemas. Quando o botão é pressionado, uma segunda animação ocorrerá, mostrando o exemplo de um Deadlock no tráfego.</p>
+
+                </div>
             </td>
+            <td></td>
         </tr>
     </table>
-
-
-
 
 </div>
 

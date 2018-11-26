@@ -1,3 +1,6 @@
+body {
+    background-color: white;
+}
 table {
     margin-left: auto;
     margin-right: auto;
@@ -11,6 +14,14 @@ table > tr {
 table > td {
     border: none;
 }
+div.absoluta {
+    width: 150px;
+    position: absolute;
+    z-index: 9999;
+    height: 282px;
+    background-color: white;
+}
+
 #controllers {
     text-align: center;
 }
@@ -21,69 +32,39 @@ table > td {
     background-color: #e5e5e5;
     border: solid 1px #e5e5e5;
     height: 512px;
-    width: 541px;
+    width: 572px;
     padding: 0px 20px 20px;
     overflow-y: auto;
 }
 #where-things-happens {
     display: inline-block;
-    background-image: url("../img/base.png");
+    background-image: url("../img/bridge.png");
     border: solid 1px #e5e5e5;
-    height: 512px;
+    height: 282px;
     width: 611px;
 }
-#where-things-happens > #lane1 {
-    margin-top: 123px;
-    width: 610px;
-    height: 45px;
+#where-things-happens > #lane {
+    margin-top: 150px;
+    width: 611px;
+    height: 88px;
     //background-color: red;
-    position: absolute;
-}
-#where-things-happens > #lane2 {
-    margin-top: 343px;
-    width: 610px;
-    height: 45px;
-    //background-color: blue;
-    position: absolute;
-}
-#where-things-happens > #lane3 {
-    margin-left: 148px;
-    width: 45px;
-    height: 511px;
-    //background-color: green;
-    position: absolute;
-}
-#where-things-happens > #lane4 {
-    margin-left: 418px;
-    width: 45px;
-    height: 511px;
-    //background-color: yellow;
     position: absolute;
 }
 
 .car {
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 90px;
     background-image: url("../img/car2.png");
-    background-size: 50px 50px;
+    background-size: 90px 90px;
     border-radius: 50px;
     position: absolute;
 }
 
-#lane2 > .car {
+.car.direita {
     transform: rotate(180deg);
 }
-
-#lane3 > .car {
-    transform: rotate(270deg);
-}
-
-#lane4 > .car {
-    transform: rotate(90deg);
-}
-
 h1 {
     text-align: center;
-    font-size: 48px;
     font-family: tahoma, sans-serif;
+    font-weight: bolder;
 }
