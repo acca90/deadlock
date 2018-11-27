@@ -43,6 +43,12 @@ div.absoluta {
     height: 282px;
     width: 611px;
 }
+#where-things-happens.esquerda {
+    background-image: url("../img/esquerda.png");
+}
+#where-things-happens.direita {
+    background-image: url("../img/direita.png");
+}
 #where-things-happens > #lane {
     margin-top: 150px;
     width: 611px;
