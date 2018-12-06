@@ -4,6 +4,10 @@ const Deadlock = (function($) {
      */
     let next = true;
     /**
+     * Indica o que fazer na próxima animação
+     */
+    let whatToDoNext = null;
+    /**
      * Cria elementos
      */
     const createCar = function ( posicao ) {
@@ -46,14 +50,21 @@ const Deadlock = (function($) {
      */
     const timeOutFunction = function ( $car ) {
         setTimeout(function() {
-            let x = Math.floor((Math.random() * 10) + 1)
-            if (x == 10) {
-                lock();
-            } else {
-                $car.remove();
-                goNext(!next,timeOutFunction);
-            }
+            whatToDoNext($car)
         }, 1000);
+    };
+    /**
+     * Esquerda direta com deadlock
+     * @param $car
+     */
+    const esquerdaDireita = function ( $car ) {
+        let x = Math.floor((Math.random() * 10) + 1);
+        if (x == 10) {
+            lock();
+        } else {
+            $car.remove();
+            goNext(!next,timeOutFunction);
+        }
     };
     /**
      * Roda animação para o carro e a lane informada
@@ -98,6 +109,13 @@ const Deadlock = (function($) {
      * Rodar normal
      */
     const run = function () {
+        whatToDoNext = esquerdaDireita;
+        execute();
+    };
+    /**
+     * Executa a animação básica
+     */
+    const execute = function () {
         defineKeyframe();
         let $car = createCar(null);
         playKeyframe($car,'esquerda',timeOutFunction);
@@ -106,9 +124,11 @@ const Deadlock = (function($) {
      * Rodar novamente simulação
      */
     const rerun = function () {
-        $('#where-things-happens').removeClass('esquerda direita');
-        stop();
-        run();
+        whatToDoNext = function () {
+            $('#where-things-happens').removeClass('esquerda direita');
+            next = true;
+            run();
+        }
     };
     /**
      * Executa animação de deadlock
@@ -121,6 +141,7 @@ const Deadlock = (function($) {
         playKeyframe($car2,'direita-lock',null);
         setTimeout(function () {
             semDeadlock();
+            executeSemDeadlock();
         },10000)
     };
     /**
@@ -141,8 +162,21 @@ const Deadlock = (function($) {
      * Roda modelo impedindo deadlock
      */
     const semDeadlock = function () {
-        stop();
+        whatToDoNext = esquerdaDireitaSemLock
+    };
+    /**
+     * Esquerda e direita sem deadlock
+     */
+    const esquerdaDireitaSemLock = function ( $car ) {
+        $car.remove();
+        goNext(!next,timeOutFunctionSemLock);
+    };
+    /**
+     * Executa sem deadlock
+     */
+    const executeSemDeadlock = function () {
         next = true;
+        stop();
         let $car = createCar(null);
         semaforoEsquerda();
         playKeyframe($car,'esquerda',timeOutFunctionSemLock);
@@ -164,8 +198,7 @@ const Deadlock = (function($) {
      */
     const timeOutFunctionSemLock = function ( $car ) {
         setTimeout(function() {
-            $car.remove();
-            goNext(!next,timeOutFunctionSemLock);
+            whatToDoNext($car);
         }, 1000);
     };
     /**
